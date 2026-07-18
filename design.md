@@ -1,6 +1,6 @@
 # AssignMate Design System & Specification
 
-This document details the complete design tokens, aesthetic principles, reusable components, and configuration guides for **AssignMate** based on the Figma designs.
+This document details the complete design tokens, aesthetic principles, reusable components, and configuration guides for **AssignMate** based on the Figma/Stitch designs.
 
 ---
 
@@ -20,22 +20,23 @@ The palette avoids harsh blacks and sterile grays, opting instead for a soft, li
 ### Core Brand Colors
 | Token Name | Hex Code | Visual Use Case |
 | :--- | :--- | :--- |
-| **Primary (Indigo)** | `#4648d4` | Active states, brand logo, text highlights, focus rings |
-| **Primary Container** | `#6063ee` | High-contrast fills, active selection icons, header cards |
-| **Secondary (Muted Blue)** | `#4b5a9c` | Muted button fills, secondary headers |
-| **Secondary Container (Light Blue/Lavender)**| `#a6b5fd` | Default buttons (e.g., "Jump in"), active tabs background |
+| **Primary (Indigo)** | `#4648d4` | CTA buttons, brand logo, heading highlights, focus rings |
+| **Primary Container** | `#6063ee` | Hover state for buttons, active selection icons |
+| **Secondary (Muted Blue)** | `#4b5a9c` | Secondary headers |
+| **Secondary Container (Light Blue/Lavender)**| `#a6b5fd` | Input focus border glow, active tabs |
 | **Secondary Fixed (Soft Blue)** | `#dde1ff` | Form input borders, default card outlines |
-| **Background (Warm Lavender-White)** | `#f8f9ff` | Core canvas background |
+| **Background (Warm Lavender-White)** | `#f8f9ff` | Core canvas background for all pages |
 
 ### Neutral Colors
 | Token Name | Hex Code | Visual Use Case |
 | :--- | :--- | :--- |
-| **On-Surface (Deep Slate)** | `#121c28` | Main headings, primary body text, dark buttons text |
+| **On-Surface (Deep Slate)** | `#121c28` | Main headings (Login), primary body text |
 | **On-Surface-Variant (Muted Slate)** | `#464554` | Subtitles, description labels, secondary details |
 | **Outline (Slate Gray)** | `#767586` | Standard borders, divider lines, prefix icons |
 | **Outline Variant (Muted Gray)** | `#c7c4d7` | Input placeholders, inactive borders |
 | **Surface-Container-Lowest (Pure White)** | `#ffffff` | Input field fills, main task card backgrounds |
 | **Surface-Container-Low (Light Gray-Blue)** | `#eef4ff` | Social button backgrounds, dropdown card lists |
+| **Surface-Container** | `#e5eeff` | Info/note box backgrounds |
 | **Surface-Dim (Muted Gray-Blue)** | `#d1dbec` | Accordion headers, collapsible panels background |
 
 ### Semantic / Accent Colors
@@ -84,7 +85,7 @@ Layout margins and paddings are based on an `8px` grid system. Spaces are genero
 To eliminate sharp edges and create a safe feel, the design system utilizes hyper-rounded corners:
 
 - **Large Containers (Cards, Modals)**: `24px` (`1.5rem`) corner radius.
-- **Medium Containers (Inputs, Action Buttons)**: `12px` to `16px` (`0.75rem` to `1rem`) corner radius.
+- **Medium Containers (Inputs, Action Buttons)**: `16px` (`1rem`) corner radius.
 - **Small Elements (Pill Badges, Tags)**: Fully rounded (`9999px`) or `8px` (`0.5rem`).
 - **Avatars**: Circular (`50%` / `rounded-full`).
 
@@ -93,123 +94,163 @@ To eliminate sharp edges and create a safe feel, the design system utilizes hype
 ## 6. Shadows & Glassmorphism
 
 - **Standard Elevation (Task Cards)**:
-  - Subtle, Indigo-tinted shadow to ground elements:
+  - Subtle, Indigo-tinted shadow:
     `box-shadow: 0px 4px 20px rgba(99, 102, 241, 0.08);`
 - **Glassmorphism (Login/Register Cards & Modals)**:
   - Translucent white fills layered over background accents:
     `background: rgba(255, 255, 255, 0.7);`
     `backdrop-filter: blur(12px);`
-  - Subtle bordering to define container edges:
+  - Subtle bordering:
     `border: 1px solid rgba(217, 227, 244, 0.5);`
 
 ---
 
-## 7. Reusable Components
+## 7. Page-Level Design Specs
+
+### Login Page (`/login`)
+- **Heading**: `"Hey, what's due today? 👀"` — `32px`, weight `800`, color `#121c28`
+- **Subtext**: `"Don't forget your assignments lol"` — `16px`, color `#464554`
+- **Logo icon**: `task_alt` (Material Symbols)
+- **CTA Button**: `"Jump in 🚀"` — background `#4648d4`, white text, hover `#6063ee`, `active:scale-95`
+- **Input background**: `#ffffff` white
+- **Input border**: `1px solid rgba(217, 227, 244, 0.5)`, focus border `#a6b5fd`
+- **Input focus animation**: `scale(1.02)` on focus
+- **Extra**: Google + LDAP SSO buttons, facepile decoration (`+12 Your group is waiting!`)
+
+### Register Page (`/register`)
+- **Heading**: `"Join AssignMate"` — `32px`, weight `800`, color `#4648d4` (indigo — different from login)
+- **Subtext**: `"Your digital living room for getting things done."` — `16px`, color `#464554`
+- **Logo icon**: `school` (Material Symbols)
+- **CTA Button**: `"I'm in 🎒"` — background `#4648d4`, white text, hover `#6063ee`, `active:scale-95`
+- **Input background**: `#ffffff` white
+- **Input border**: same as login
+- **Extra**: Info note box (`#e5eeff` background) about editor/viewer access, toast decoration (`3 friends just joined`)
+- **Validation**: Password must match Confirm Password field
+
+### Login vs Register — Key Differences
+
+| Property | Login | Register |
+|---|---|---|
+| Heading text | `Hey, what's due today? 👀` | `Join AssignMate` |
+| Heading color | `#121c28` dark slate | `#4648d4` indigo |
+| Logo icon | `task_alt` | `school` |
+| CTA label | `Jump in 🚀` | `I'm in 🎒` |
+| Fields | Email + Password | Name + Email + Password + Confirm |
+| Extra element | Google + LDAP SSO buttons | Info note about role access |
+| Facepile copy | `Your group is waiting!` | `3 friends just joined` |
+| Card style | Identical glassmorphic card | Identical glassmorphic card |
+| Background | Identical lavender + glow blobs | Identical lavender + glow blobs |
+
+---
+
+## 8. Reusable Components
 
 ### 1. **NavigationBar**
 - **Structure**: Sticky layout spanning the top of the viewport.
 - **Elements**: Bold text logo ("AssignMate") on the left; notification bell (with dynamic red activity dot) and user profile picture on the right.
+- **No nav links** — keeps the UI minimal and casual.
 
 ### 2. **GlassCard**
-- **Structure**: Glassmorphic styling containing authentication forms, modals, or page summaries.
+- **Structure**: Glassmorphic card — `rgba(255,255,255,0.7)`, `backdrop-filter: blur(12px)`, `border: 1px solid rgba(217,227,244,0.5)`, `border-radius: 24px`, padding `32px`.
 
 ### 3. **FormInput**
 - **Structure**: Rounded inputs (`16px`) with a fixed height of `56px` (`h-14`).
-- **Elements**: Includes left-aligned prefix icons (Material Symbols) and a smooth blue border focus glow.
+- **Elements**: Left-aligned prefix icons (Material Symbols), white background `#ffffff`, smooth `#a6b5fd` border focus glow, `scale(1.02)` on focus.
 
 ### 4. **BouncyButton**
-- **Structure**: Substantial buttons (`h-14`) with a bouncy hover scale transition.
-- **Variants**:
-  - *Primary*: Indigo/Lavender background with high-contrast text.
-  - *SSO Button*: White background, gray border, including Google/LDAP branding icons.
+- **Structure**: `height: 56px`, `border-radius: 16px`, bouncy hover scale transition.
+- **Primary variant**: `#4648d4` background, white text, hover `#6063ee`, `active:scale-95`.
+- **SSO variant**: White background, `rgba(217,227,244,0.5)` border, gray text.
 
-### 5. **TaskAccordion Group**
+### 5. **TaskAccordionGroup**
 - **Structure**: Collapsible subject panel (e.g. "MATH").
-- **Elements**: 
-  - Thick, colored vertical line indicator on the left side.
-  - Chevron arrow on the right side indicating collapse state.
-  - Active hover tint over the header block.
+- **Elements**: Thick colored vertical line on the left, subject name in caps, chevron arrow on the right.
 
 ### 6. **TaskCard**
-- **Structure**: Rectangular panel sitting inside the accordion stack.
-- **Elements**:
-  - Circular checkbox on the far left.
-  - Task Title and Due Date metadata (calendar icon + text).
-  - Status/Due Pill tags (e.g. "OVERDUE 😬" or "DUE TOMORROW ⚠️").
-  - Small circular priority dot on the far right (Red: Urgent, Orange: Soon, Green: Chill).
+- **Structure**: Rectangular panel inside the accordion stack.
+- **Elements**: Circular checkbox (left), assignment title + due date, status badges (OVERDUE / DUE TOMORROW), priority dot (right).
 
 ### 7. **PriorityBadge**
-- **Structure**: Semi-transparent colored pills with custom emojis.
-- **Examples**: `OVERDUE 😬` (Red themed), `DUE TOMORROW ⚠️` (Orange themed).
+- **Structure**: Semi-transparent colored pill with emoji.
+- **Variants**: `OVERDUE 😬` (red), `DUE TOMORROW ⚠️` (amber), no badge for normal.
 
 ### 8. **ToastNotification**
-- **Structure**: Floating alert anchored at the bottom-left corner of the screen.
-- **Elements**: Left icon, description string, close button, and optional overlapping avatar facepiles.
+- **Structure**: Floating card anchored bottom-left, slides up on entry.
+- **Elements**: Icon, description text, optional avatar facepile.
 
-### 9. **NewTaskModal**
-- **Structure**: Centered dialog card over a dark blurred backdrop blur.
-- **Elements**: Subject dropdown picker, title inputs, date picker, priority tag selector (Radio styles), text area, and closing `x` icon.
+### 9. **NewTaskModal** *(Editor only)*
+- **Structure**: Centered dialog over blurred backdrop.
+- **Elements**: Subject dropdown, title input, due date picker, priority chips (chill 🟢 / soon 🟡 / urgent 🔴), extra details textarea, `"Post it 📌"` submit button.
+
+### 10. **FAB Button** *(Editor only)*
+- **Structure**: Floating `+ New Task` pill button, fixed bottom-right corner.
+- **Style**: `#4648d4` background, white text + icon, fully rounded (`9999px`).
+- **Viewers do not see this button** — it is the only UI difference between roles.
 
 ---
 
-## 8. Icons Library
+## 9. Icons Library
 
 Icons are sourced from the **Material Symbols Outlined** collection.
 
-**Key Icons Used:**
-- `task_alt`: Main brand logo mark.
-- `alternate_email`: Email input fields.
-- `lock` / `vpn_key`: Password inputs.
-- `rocket_launch`: Authentication call-to-action button.
-- `groups`: LDAP/Group login option.
-- `arrow_forward`: Next page anchors.
-- `notifications`: Top navigation header.
-- `calendar_today` / `calendar_month`: Due dates indicators.
-- `close`: Closing modals and drawers.
-- `priority_high` / `info`: Warnings and notes.
-- `add`: FAB task additions.
-- `push_pin`: Task posting.
+| Icon | Used For |
+|---|---|
+| `task_alt` | Login page logo |
+| `school` | Register page logo |
+| `mail` | Email input prefix |
+| `lock` | Password input prefix |
+| `key` | Confirm password input prefix |
+| `person` | Full name input prefix |
+| `rocket_launch` | Login CTA button |
+| `backpack` | Register CTA button |
+| `groups` | LDAP login option |
+| `notifications` | Navbar bell icon |
+| `calendar_today` | Due date on task cards |
+| `close` | Closing modals/drawers |
+| `info` | Info/note boxes |
+| `add` | FAB task button |
+| `push_pin` | Post assignment button in modal |
+| `sync` | Loading spinner on buttons |
+| `arrow_forward` | Navigation links |
 
 ---
 
-## 9. Decorative Elements
+## 10. Decorative Elements
 
-- **Background Glows (Blobs)**:
-  - Top-left glow: `400px` radial blob, `bg-primary/5`, `blur-[100px]`.
-  - Bottom-right glow: `500px` radial blob, `bg-secondary-container/20`, `blur-[120px]`.
+- **Background Glows (Blobs)** — used on all pages:
+  - Top-left: `400px` radial circle, `#4648d4` at `5% opacity`, `blur: 100px`
+  - Bottom-right: `500px` radial circle, `#a6b5fd` at `20% opacity`, `blur: 120px`
+  - Both animate with slow vertical float every `6s`
 - **Facepiles**:
-  - Overlapping avatars with `border-4 border-white` and a subtle shadow.
-  - Final avatar displaying a counter chip (e.g., `+12`) to signify user groups.
+  - Login: overlapping avatars + `+12` counter chip — `"Your group is waiting!"`
+  - Register: small toast card with 3 avatars — `"3 friends just joined"`
 
 ---
 
-## 10. Animations & Micro-interactions
+## 11. Animations & Micro-interactions
 
-1. **Floating Glow Blobs**: Subtle vertical translation (`translate-y`) looping every `6s` to simulate a live, breathing space.
-2. **Bouncy Hovers**: Buttons scale down slightly when active/pressed, and lift when hovered:
-   - `transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);`
-   - Active state: `scale-95` / `scale-98`
-3. **Form Focus**: Inputs expand by a scale of `1.02` when focused, transitioning back smoothly on blur.
-4. **Button Ripple**: Simple ripple-burst or ping animation on button click.
+1. **Floating Glow Blobs**: Subtle `translate-y` loop every `6s`.
+2. **Bouncy Button Hover**: `hover:bg-[#6063ee]`, `active:scale-95`.
+   - Transition: `transition-all`
+3. **Input Focus Scale**: `focus-within:scale-[1.02]` on the input wrapper.
+4. **Button Loading State**: Spinning `sync` icon + `"Hang tight..."` text while submitting.
 5. **Toast Slide-in**: Bottom-left notification slides upward on entry.
 
 ---
 
-## 11. Page & Route Suggestions
+## 12. Routes & Pages
 
-| Page Title | Route Path | Component Description |
-| :--- | :--- | :--- |
-| **Login** | `/login` | Authentication form, SSO credentials, and active group facepiles. |
-| **Register / Join** | `/register` | Sign-up fields, access warning note box, and friend notification toast. |
-| **Dashboard** | `/` or `/dashboard` | Main student task overview with accordions, priority indicators, and FAB. |
-| **Notification popover** | *(Drawer component)* | Floating notifications drawer toggleable from the navbar bell. |
-| **New Task Dialog** | *(Modal component)* | Form overlay for creating new tasks. |
+| Page | Route | Component | Notes |
+| :--- | :--- | :--- | :--- |
+| **Login** | `/login` | `Login.jsx` | Default entry, redirected from `/` |
+| **Register** | `/register` | `Register.jsx` | New user sign up |
+| **Dashboard** | `/dashboard` | `Dashboard.jsx` | Main board, same UI for both roles |
+| **Notification Drawer** | *(component)* | Inside Dashboard | Bell icon toggles slide-in drawer |
+| **New Task Modal** | *(component)* | Inside Dashboard | FAB button triggers, Editor only |
 
 ---
 
-## 12. Tailwind Configuration Suggestions
-
-Add the following tokens to your `tailwind.config.js` to ensure styling is accurate:
+## 13. Tailwind Configuration
 
 ```javascript
 module.exports = {
