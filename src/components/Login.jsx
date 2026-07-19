@@ -165,28 +165,6 @@ export default function Login() {
           </button>
         </p>
       </div>
-
-      {/* Decorative Floating Avatars (Facepiles) */}
-      <div className="hidden lg:block fixed bottom-12 left-12 transform -rotate-12 opacity-80 select-none z-10">
-        <div className="flex -space-x-3">
-          <img
-            alt="Friend 1"
-            className="w-12 h-12 rounded-full border-4 border-white shadow-lg object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIVTiLRhliCvvdWP30PkKn20ZnmjBVNZJZV_ifyrSL9nkBIVZlYLdo1rMFSx-ngoz8f-2fIfNLk7Sb19Ar2n_VsY3Z28neyEBxMGg_lpOfn1Xz4IGdsDkwHWftvfBkD9zF6S3MyhXOjg3YRnLWgJQ3vqhpYqk-lZS7u1AVGyTtClaAA2pvWHKx48mawHkFBiCM50q6SLvgp7MECuazSr3_eCTkpbjsKYQ038tlKN7oVbQMpM0zqry_Q3Iwy8mPkKyUxElvbrj9a1me"
-          />
-          <img
-            alt="Friend 2"
-            className="w-12 h-12 rounded-full border-4 border-white shadow-lg object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm9ZW_v7yXnWcccaBwYnooMZC54uc0sKLEzv_QNlylXkvMw5shS7K6EV83iSqoO9HkrMoKfHYJ1exEFg2jzw87TNUbphkOckLi4wzmklOHkr6IMzDeXi_YgLZ2NQewHBzhBfRUHZcfTOymb4uYNj2rU9arxtYRIpcD0QitME2ZxebqAdw6O0gZtAA1kDRN98w9OSplSGOPGn-1p6aJnELdgvp8kZoRMlxIAfkK2e9a2sB1B0belOmtl7IrPGhyDiWOpfp09KpX7n4V"
-          />
-          <div className="w-12 h-12 rounded-full border-4 border-white bg-[#ffdcc5] text-[#301400] flex items-center justify-center font-bold shadow-lg">
-            +12
-          </div>
-        </div>
-        <p className="mt-2 text-[12px] text-[#464554] font-semibold text-center">
-          Your group is waiting!
-        </p>
-      </div>
     </div>
   );
 }
