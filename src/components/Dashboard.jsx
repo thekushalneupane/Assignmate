@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 export default function Dashboard() {
   const location = useLocation();
-  const role = location.state?.role || 'viewer';
+  const params = new URLSearchParams(location.search);
+const role = params.get('role') || 'viewer';
   return (
     <div className="min-h-screen bg-[#f8f9ff]">
       {/* Navigation Bar */}

@@ -80,7 +80,7 @@ export default function Register() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[600] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
+                  className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[400] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
                   placeholder="Alex Johnson"
                   required
                 />
@@ -101,7 +101,7 @@ export default function Register() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[600] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
+                  className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[400] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
                   placeholder="alex@campus.edu"
                   required
                 />
@@ -123,7 +123,7 @@ export default function Register() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[600] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
+                    className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[400] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
                     placeholder="••••••••"
                     required
                   />
@@ -142,7 +142,7 @@ export default function Register() {
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[600] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
+                    className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[400] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
                     placeholder="••••••••"
                     required
                   />

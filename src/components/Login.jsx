@@ -1,22 +1,33 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const TEST_ACCOUNTS = [
+  { email: 'editor@assignmate.com', password: 'password123', role: 'editor' },
+  { email: 'viewer@assignmate.com', password: 'password123', role: 'viewer' },
+];
+
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
+    const match = TEST_ACCOUNTS.find(
+      (a) => a.email === email.trim().toLowerCase() && a.password === password
+    );
+    if (!match) {
+      setError('Wrong email or password 😬');
+      return;
+    }
     setLoading(true);
-    console.log('Logging in with:', { email, password });
-    
-    // Simulate login loading state
     setTimeout(() => {
       setLoading(false);
-      navigate('/dashboard');
-    }, 1500);
+      navigate(`/dashboard?role=${match.role}`);
+    }, 900);
   };
 
   return (
@@ -73,7 +84,7 @@ export default function Login() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[600] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
+                  className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[400] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
                   placeholder="you@university.edu"
                   required
                 />
@@ -99,7 +110,7 @@ export default function Login() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[600] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
+                  className="w-full h-[56px] rounded-[16px] bg-[#ffffff] border border-[rgba(217,227,244,0.5)] focus:border-[#a6b5fd] py-3 pl-12 pr-4 text-[16px] text-[#121c28] font-[400] outline-none transition-all placeholder:text-[#c7c4d7] shadow-sm"
                   placeholder="••••••••"
                   required
                 />
@@ -111,7 +122,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full h-[56px] rounded-[16px] bg-[#4648d4] text-white hover:bg-[#6063ee] font-[700] text-[16px] transition-all active:scale-95 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full h-[56px] rounded-[16px] bg-[#4648d4] text-white hover:bg-[#6063ee] font-[700] text-[16px] transition-all active:scale-95 shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
               >
                 {loading ? (
                   <>
@@ -125,6 +136,9 @@ export default function Login() {
                   </>
                 )}
               </button>
+              {error && (
+                <p className="mt-3 text-center text-[13px] font-[600] text-[#ba1a1a]">{error}</p>
+              )}
             </div>
           </form>
 

@@ -23,7 +23,8 @@
   --color-error: #ba1a1a;
   --color-error-container: #ffdad6;
 
-  --font-sans: "Nunito Sans", sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   --spacing-stack-sm: 0.5rem;
   --spacing-stack-md: 1rem;
@@ -37,12 +38,19 @@
   --radius-3xl: 1.5rem;     /* 24px */
 }
 
+body, p, input, button, label {
+  font-family: var(--font-body);
+}
+
 body {
-  font-family: 'Nunito Sans', sans-serif;
   background-color: #f8f9ff;
   overflow-x: hidden;
   margin: 0;
   color: #121c28;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
 }
 
 .bouncy-hover {
