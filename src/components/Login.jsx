@@ -151,8 +151,10 @@ export default function Login() {
               Google
             </button>
             <button className="flex items-center justify-center h-[56px] rounded-[16px] bg-[#ffffff] border-2 border-[rgba(217,227,244,0.5)] font-[700] text-[14px] text-[#121c28] hover:bg-[#f8f9ff] transition-colors cursor-pointer">
-              <span className="material-symbols-outlined mr-2 text-[20px] text-[#767586]">groups</span>
-              LDAP
+              <svg className="w-5 h-5 mr-2" viewBox="0 0 814 1000" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.8 134.4-317.7 266.5-317.7 99.7 0 162.5 67.3 219.5 67.3 54.5 0 127.5-71.8 240-71.8 9.2 0 60.8 1.5 117.8 53.5zm-156.9-207.9c-46.5 53.7-119.9 97.7-193.2 97.7-9.3 0-18.7-1-27.1-3 0-4.6-.8-9.4-.8-14.8 0-57 26.5-117.6 76.6-162.8 25.1-22.8 78.6-52.6 143.2-57.6.6 8 1 16.4 1 23.7 0 58-11.7 114.8-39.7 157.4l40-40.6z"/>
+              </svg>
+              Apple
             </button>
           </div>
         </div>
