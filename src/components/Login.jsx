@@ -22,7 +22,8 @@ export default function Login() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      navigate(`/dashboard?role=${match.role}`);
+      localStorage.setItem('user', JSON.stringify({ name: match.name, role: match.role }));
+      navigate('/dashboard');
     }, 900);
   };
 

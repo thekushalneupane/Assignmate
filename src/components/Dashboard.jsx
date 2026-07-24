@@ -1,10 +1,18 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-const role = params.get('role') || 'viewer';
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem('user')) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const role = user.role || 'viewer';
+  const name = user.name || 'there';
   return (
     <div className="min-h-screen bg-[#f8f9ff]">
       {/* Navigation Bar */}
@@ -36,7 +44,7 @@ const role = params.get('role') || 'viewer';
           <div>
             <div className="flex items-center gap-4 mb-2">
               <h1 className="font-sans font-extrabold text-[32px] md:text-[40px] leading-tight text-on-surface">
-                Hey Alex 👋
+                Hey {name} 👋
               </h1>
               <span className={`px-3 py-1 rounded-full text-[12px] font-bold tracking-wide ${role === 'editor' ? 'bg-primary-container text-white' : 'bg-surface-container-high text-on-surface'}`}>
                 {role === 'editor' ? 'Editor' : 'Viewer'}
