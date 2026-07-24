@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const TEST_ACCOUNTS = [
-  { email: 'editor@assignmate.com', password: 'password123', role: 'editor' },
-  { email: 'viewer@assignmate.com', password: 'password123', role: 'viewer' },
-];
+import TEST_ACCOUNTS from '../data/users.json';
 
 export default function Login() {
   const navigate = useNavigate();

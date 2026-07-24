@@ -1,0 +1,4 @@
+[
+  { "email": "editor@assignmate.com", "password": "password123", "role": "editor" },
+  { "email": "viewer@assignmate.com", "password": "password123", "role": "viewer" }
+]
