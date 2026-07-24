@@ -23,8 +23,8 @@
   --color-error: #ba1a1a;
   --color-error-container: #ffdad6;
 
+  --font-sans: 'Inter', sans-serif;
   --font-heading: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Inter', sans-serif;
 
   --spacing-stack-sm: 0.5rem;
   --spacing-stack-md: 1rem;
@@ -39,7 +39,7 @@
 }
 
 body, p, input, button, label {
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
 }
 
 body {

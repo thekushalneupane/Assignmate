@@ -13,7 +13,7 @@ const role = params.get('role') || 'viewer';
           <div className="w-10 h-10 bg-primary-container rounded-xl flex items-center justify-center shadow-md">
             <span className="material-symbols-outlined text-white text-xl font-bold">task_alt</span>
           </div>
-          <span className="font-sans font-extrabold text-2xl text-on-surface">AssignMate</span>
+          <span className="font-heading font-extrabold text-2xl text-on-surface">AssignMate</span>
         </div>
         <div className="flex items-center gap-4">
           <button className="relative w-12 h-12 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
