@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     if (!localStorage.getItem('user')) {
@@ -10,9 +12,27 @@ export default function Dashboard() {
     }
   }, [navigate]);
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const role = user.role || 'viewer';
   const name = user.name || 'there';
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
+
   return (
     <div className="min-h-screen bg-[#f8f9ff]">
       {/* Navigation Bar */}
@@ -28,11 +48,40 @@ export default function Dashboard() {
             <span className="material-symbols-outlined text-outline">notifications</span>
             <span className="absolute top-3 right-3 w-3 h-3 bg-error rounded-full border-2 border-[#f8f9ff]"></span>
           </button>
-          <img
-            alt="Profile"
-            className="w-10 h-10 rounded-full border-2 border-surface-container-lowest shadow-sm object-cover cursor-pointer"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIVTiLRhliCvvdWP30PkKn20ZnmjBVNZJZV_ifyrSL9nkBIVZlYLdo1rMFSx-ngoz8f-2fIfNLk7Sb19Ar2n_VsY3Z28neyEBxMGg_lpOfn1Xz4IGdsDkwHWftvfBkD9zF6S3MyhXOjg3YRnLWgJQ3vqhpYqk-lZS7u1AVGyTtClaAA2pvWHKx48mawHkFBiCM50q6SLvgp7MECuazSr3_eCTkpbjsKYQ038tlKN7oVbQMpM0zqry_Q3Iwy8mPkKyUxElvbrj9a1me"
-          />
+          
+          <div className="relative" ref={dropdownRef}>
+            <img
+              alt="Profile"
+              className="w-10 h-10 rounded-full border-2 border-surface-container-lowest shadow-sm object-cover cursor-pointer hover:opacity-90 transition-opacity"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIVTiLRhliCvvdWP30PkKn20ZnmjBVNZJZV_ifyrSL9nkBIVZlYLdo1rMFSx-ngoz8f-2fIfNLk7Sb19Ar2n_VsY3Z28neyEBxMGg_lpOfn1Xz4IGdsDkwHWftvfBkD9zF6S3MyhXOjg3YRnLWgJQ3vqhpYqk-lZS7u1AVGyTtClaAA2pvWHKx48mawHkFBiCM50q6SLvgp7MECuazSr3_eCTkpbjsKYQ038tlKN7oVbQMpM0zqry_Q3Iwy8mPkKyUxElvbrj9a1me"
+              onClick={() => setDropdownOpen((prev) => !prev)}
+            />
+
+            {dropdownOpen && (
+              <div 
+                className="absolute right-0 mt-2 w-56 bg-white rounded-[16px] p-4 z-50 border border-[rgba(217,227,244,0.5)] shadow-[0px_4px_20px_rgba(99,102,241,0.08)]"
+              >
+                <div className="flex flex-col items-start gap-1 pb-3">
+                  <span className="font-sans font-bold text-[16px] text-on-surface truncate w-full">
+                    {name}
+                  </span>
+                  <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wide ${role === 'editor' ? 'bg-primary-container text-white' : 'bg-surface-container-high text-on-surface'}`}>
+                    {role === 'editor' ? 'Editor' : 'Viewer'}
+                  </span>
+                </div>
+
+                <div className="border-t border-outline-variant/30 my-1"></div>
+
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-2.5 px-2 py-2 mt-1 text-error hover:bg-error-container/20 rounded-xl transition-colors font-sans text-[14px] font-semibold cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[20px]">logout</span>
+                  <span>Logout</span>
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
 
